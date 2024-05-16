@@ -1,0 +1,23 @@
+---Iniciar el proyecto
+go mod init
+
+--Instalar dependencias 
+go get github.com/aws/aws-lambda-go/lambda
+
+--Compilar GO
+
+powershell
+-Instal build-lambda
+$env:GOOS = "windows"
+go.exe install github.com/aws/aws-lambda-go/cmd/build-lambda-zip@latest
+-build GO
+$env:GOOS = "linux"
+$env:GOARCH = "amd64"
+$env:CGO_ENABLED = "0"
+go build -o bootstrap main.go
+D:\hitts\Fuentes\Claro\GO\bin\build-lambda-zip.exe -o lambda-handler.zip bootstrap
+
+
+
+
+
